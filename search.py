@@ -1,11 +1,11 @@
-import requests
 import os
+from datetime import datetime, timedelta
+
+import requests
+from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from newsapi import NewsApiClient
 from serpapi import GoogleSearch
-from bs4 import BeautifulSoup
-import requests
-from datetime import datetime, timedelta
 
 
 class Search:
@@ -13,7 +13,7 @@ class Search:
         self.wiki_url = "https://en.wikipedia.org/w/api.php"
         self.newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 
-    def search_wikipedia(self, query) -> list:
+    def wikipedia(self, query) -> list:
         search_params = {
             "action": "query",
             "list": "search",
@@ -46,17 +46,17 @@ class Search:
 
         return (content, url)
 
-    def search_news(self, query):
+    def news(self, query):
         return self.newsapi.get_everything(
             q=query,
             language="en",
             sort_by="relevancy",
-            from_param=(datetime.now() - timedelta(2)).strftime('%Y-%m-%d'),
-            to=datetime.today().strftime('%Y-%m-%d'),
+            from_param=(datetime.now() - timedelta(2)).strftime("%Y-%m-%d"),
+            to=datetime.today().strftime("%Y-%m-%d"),
             page_size=7,
         )
 
-    def search_google(self, query) -> dict:
+    def google(self, query) -> dict:
         params = {
             "q": query,
             "hl": "en",

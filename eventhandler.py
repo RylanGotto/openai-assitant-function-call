@@ -12,7 +12,7 @@ class EventHandler(AssistantEventHandler):
 
     @override
     def on_text_created(self, text) -> None:
-        print(f"\nassistant > ", end="", flush=True)
+        pass
 
     @override
     def on_text_delta(self, delta, snapshot):
@@ -31,11 +31,11 @@ class EventHandler(AssistantEventHandler):
         search_response = {}
         match name:
             case "news":
-                search_response = self.Assistant.search.search_news(q)
+                search_response = self.Assistant.search.news(q)
             case "google":
-                search_response = self.Assistant.search.search_google(q)
+                search_response = self.Assistant.search.google(q)
             case "wikipeida":
-                search_response = self.Assistant.search.search_wikipedia(q)
+                search_response = self.Assistant.search.wikipedia(q)
             case "fetch":
                 search_response = self.Assistant.search.fetch_url(q)
             case _:
