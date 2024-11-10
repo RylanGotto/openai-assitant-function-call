@@ -1,8 +1,7 @@
 import os
 
-from dotenv import load_dotenv
-
 from assistant import Assistant
+from dotenv import load_dotenv
 from openai import OpenAI
 from search import Search
 
@@ -18,7 +17,7 @@ def main():
         project=os.environ.get("OPENAI_PROJECT"),
     )
     search = Search()
-    assitant = Assistant(client, search)
+    assitant = Assistant(client, search, None)
     assistant_id = assitant.list_assistants().data[0].id
     assitant.set_active_assitant(assistant_id).create_new_thread()
 

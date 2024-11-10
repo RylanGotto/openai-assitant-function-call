@@ -1,10 +1,14 @@
 import json
+import sys
+
+sys.path.append("/home/rylan/Projects/python/assist/oaia")
+
 
 from eventhandler import EventHandler
 
 
 class Assistant:
-    def __init__(self, client, search):
+    def __init__(self, client, search, websocket):
         self.client = client
         self.assistant_id = None
         self.thread_id = None
@@ -13,6 +17,7 @@ class Assistant:
         self.run = None
         self.tool_call_id = None
         self.search = search
+        self.websocket = websocket
 
     def list_assistants(self):
         self.assistants = self.client.beta.assistants.list(

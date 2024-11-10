@@ -1,8 +1,9 @@
+import asyncio
 import json
-
-from typing_extensions import override
+import sys
 
 from openai import AssistantEventHandler
+from typing_extensions import override
 
 
 class EventHandler(AssistantEventHandler):
@@ -11,12 +12,30 @@ class EventHandler(AssistantEventHandler):
         self.Assistant = assistant
 
     @override
+    def on_end(self):
+        pass
+
+    @override
+    def on_message_done(self, text) -> None:
+        self.Assistant.websocket.write_message("<DONE>")
+
+    @override
     def on_text_created(self, text) -> None:
         pass
 
     @override
     def on_text_delta(self, delta, snapshot):
-        print(delta.value, end="", flush=True)
+        # print(delta.value, end="", flush=True)
+        # self.Assistant.websocket.write_message(delta.value)
+        pass
+
+    # @override
+    # def _emit_sse_event(self, event):
+    #     print("sse", event)
+
+    @override
+    def on_message_delta(self, message, snapshot):
+        self.Assistant.websocket.write_message(message.content[0].text.value)
 
     @override
     def on_run_step_created(self, run_step) -> None:
