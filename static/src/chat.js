@@ -48,6 +48,10 @@ socket.onmessage = (event) => {
         } else {
             isWaitingForResponse = false;
         }
+    } else {
+        if (event.data.trim() === 'DONE') {
+            return;
+        }
     }
 
     if (!currentMessageElement) {
