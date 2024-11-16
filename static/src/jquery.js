@@ -13,7 +13,9 @@ $(window).on("load", function(){
         if (e.key === 'Enter' || e.keyCode === 13) {
             e.preventDefault();
             addTodoItem($(this).val());
+            $(this).val("")
         }
+       
     });
 
     function generateUID() {
@@ -26,9 +28,9 @@ $(window).on("load", function(){
 
     function addTodoItem(todo_text){
         var uuid = generateUID()
-        var todo_item = '<div class="todo-list-item" data-todo-id="' + uuid + '" draggable="true">' +
+        var todo_item = '<div class="todo-list-item d-flex align-items-center justify-content-between" data-todo-id="' + uuid + '" draggable="true">' +
                     '<h2 class="h3">' + todo_text +  '</h2>' +
-                    '<a href="#" class="todo-item-exit">X</a>' +
+                    '<a href="#" class="todo-item-exit d-flex">X</a>' +
                     '</div>';
         if (localStorage.length === 0) {
             localStorage.setItem(uuid, todo_item);

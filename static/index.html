@@ -93,9 +93,7 @@
             color: white;
             border-radius: 1rem;
         }
-        .todo-list-item {
-            position: relative;
-        }
+
         .todo-item-exit {
             color: var(--bs-body-color);
             font-family: var(--bs-body-font-family);
@@ -103,11 +101,20 @@
             font-weight: 800;
             font-size: 20px;
             text-decoration: none;
-            position: absolute;
             left: 28rem;
             bottom: 1rem;
             color: white
         }
+
+        .bg-primary {
+            background: black !important;
+            opacity: 0.1;
+        }
+        #chatbox-screen {
+            opacity: 0.7;
+        }
+
+        
     </style>
 </head>
 <body class="h-100 bg-light">
@@ -115,70 +122,66 @@
         <!-- Header -->
         <header class="">
             <div class="container-fluid px-4 py-3 d-flex align-items-center justify-content-between">
+                
                 <div class="d-flex align-items-center">
                     <div class="bg-primary rounded d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
                         <svg class="text-white" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
                         </svg>
                     </div>
-                    <h1 class="h5 mb-0 ms-3">Modern Chat</h1>
+                    <h1 class="h5 mb-0 ms-3">Assitant</h1>
                 </div>
                 <div class="d-flex">
-                    <button id="home-tab" class="btn btn-link">Home</button>
-                    <button id="chat-tab" class="btn btn-link">Chatbox</button>
+                    <button id="background-tab" class="btn btn-link">Background</button>
                 </div>
             </div>
         </header>
-
-        <!-- Main Content -->
-        <main class="flex-grow-1 container-fluid px-4 py-5">
-            <!-- Home Screen -->
-            <div id="home-screen" class="h-100 d-flex flex-column">
-                <input id="todo-list-input" type="text" class="form-control" placeholder="Enter a task..." />
-                <div id="todo-list-container">
-
+        <div class="container-fluid d-flex flex-column flex-md-row">
+            <!-- Left Side -->
+            <div class="left-container" style="width: 100%; max-width: 30%;">
+                <div id="home-screen" class="h-100 d-flex flex-column">
+                    <input id="todo-list-input" type="text" class="form-control" placeholder="Enter a task..." />
+                    <div id="todo-list-container"></div>
                 </div>
             </div>
-
-            <!-- Chatbox Screen -->
-            <div id="chatbox-screen" class="d-none h-100 d-flex flex-column bg-white shadow rounded">
-                <!-- Chat Messages Container -->
-                <div id="chat-messages" class="flex-grow-1 overflow-auto p-4 scrollbar-custom">
-                    <!-- Welcome Message -->
-                    <div class="message ai d-flex align-items-start mb-4">
-                        <div class="avatar flex-shrink-0 rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                            <svg class="text-primary" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
-                            </svg>
-                        </div>
-                        <div class="message-content ms-3">
-                            <p>👋 Welcome! How can I assist you today?</p>
+        
+            <!-- Right Side -->
+            <div class="right-container ms-md-auto mt-4 mt-md-0" style="width: 30%; max-width: 30%;">
+                <!-- Chatbox Screen -->
+                <div id="chatbox-screen" class="h-75 d-flex flex-column bg-white shadow rounded">
+                    <!-- Chat Messages Container -->
+                    <div id="chat-messages" class="flex-grow-1 overflow-auto p-4 scrollbar-custom">
+                        <!-- Welcome Message -->
+                        <div class="message ai d-flex align-items-start mb-4">
+                            <div class="avatar flex-shrink-0 rounded-circle bg-light d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px;">
+                                <svg class="text-primary" width="20" height="20" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                                </svg>
+                            </div>
+                            <div class="message-content ms-3">
+                                <p>👋 Welcome! How can I assist you today?</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Chat Input Form -->
-                <div class="border-top p-4">
-                    <form id="chat-form" class="d-flex">
-                        <input
-                            type="text"
-                            id="message-input"
-                            class="form-control me-2"
-                            placeholder="Type your message..."
-                        />
-                        <button
-                            type="submit"
-                            class="btn btn-primary d-flex align-items-center justify-content-center"
-                        >
-                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                            </svg>
-                        </button>
-                    </form>
+        
+                    <!-- Chat Input Form -->
+                    <div class="border-top p-4">
+                        <form id="chat-form" class="d-flex">
+                            <input type="text" id="message-input" class="form-control me-2" placeholder="Type your message..." />
+                            <button type="submit" class="btn btn-primary d-flex align-items-center justify-content-center">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
 
     <script src="src/drag.js"></script>
     <script src="src/chat.js"></script>

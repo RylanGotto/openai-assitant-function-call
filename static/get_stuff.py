@@ -1,9 +1,14 @@
+import os
+
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Define API endpoints and headers
 ZEN_QUOTES_API_URL = "https://zenquotes.io/api/quotes"
 OPENAI_API_URL = "https://api.openai.com/v1/images/generations"
-OPENAI_API_KEY = ""
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 
 # Fetch quotes from ZenQuotes
