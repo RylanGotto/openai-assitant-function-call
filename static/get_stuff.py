@@ -3,7 +3,7 @@ import requests
 # Define API endpoints and headers
 ZEN_QUOTES_API_URL = "https://zenquotes.io/api/quotes"
 OPENAI_API_URL = "https://api.openai.com/v1/images/generations"
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = ""
 
 
 # Fetch quotes from ZenQuotes
